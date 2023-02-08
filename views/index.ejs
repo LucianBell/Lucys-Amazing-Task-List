@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <title>Lucy's Amazing To-Do List</title>
+  </head>
+  <body>
+    <% if (message != "") {%>
+
+    <section class="message message-<%= type %>">
+      <p><%= message %></p>
+      <span id="close-message"><i class="bi bi-x-circle"></i></span>
+    </section>
+    <% } %>
+
+    <header>
+      <% if (task === null) { %>
+      <form action="/create" method="post">
+        <input
+          type="text"
+          name="task"
+          id="task"
+          placeholder="Insert a task"
+          class="taskInput"
+        />
+        <button id="addButton" type="submit" class="taskButton">
+          Add task
+        </button>
+      </form>
+      <% } else { %>
+      <form action="/updateOne/<%= task.id %>" method="post">
+        <input
+          type="text"
+          name="task"
+          id="task"
+          value="<%= task.task %>"
+          class="taskInput"
+        />
+        <button id="updateButton" type="submit" class="taskButton">
+          Update
+        </button>
+      </form>
+      <% } %>
+    </header>
+    <h1 class="taskListHeader">Your amazing task list!</h1>
+
+    <section id="tasks">
+      <ul class="taskUl">
+        <% tasksList.forEach((task) => { %>
+        <li class="taskLi check-<%= task.check %>">
+          <a
+            href="/check/<%= task._id %>"
+            class="taskLiA check-<%= task.check %>"
+            ><%= task.task %> |
+            <span
+              >Created at <%= task.date.toLocaleDateString('en-us') %></span
+            ></a
+          >
+          <div>
+            <a href="/getById/<%= task._id %>/update" class="editButton"
+              ><i class="bi bi-pencil-square"></i
+            ></a>
+            <a href="/getById/<%= task._id %>/delete" class="deleteButton"
+              ><i class="bi bi-trash3"></i
+            ></a>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <% if (taskDelete != null) { %>
+    <section id="modal" class="modalSection">
+      <div class="modalCard" id="card">
+        <div class="modalConfirmHeader">
+          <h2 class="modalTitle">Confirmation</h2>
+          <a href="/" class="modalX"><i class="bi bi-x-circle"></i></a>
+        </div>
+        <hr />
+        <p class="modalP">
+          Are you sure you want to delete the task:
+          <span><%= taskDelete.task %></span>?
+        </p>
+        <div class="modalBtns">
+          <a class="modalEditBtn" href="/">No, keep the task</a>
+          <a class="modalDeleteBtn" href="/deleteOne/<%= taskDelete._id %>"
+            >Yes, delete task</a
+          >
+        </div>
+      </div>
+    </section>
+    <% } %>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Poppins:wght@200;500&display=swap");
+
+:root {
+  --white: #fffbfe;
+  --red: #eb5e55;
+  --green: #55eb82;
+  --blue: #5576eb;
+  --black: #252627;
+  --second-black: #131112;
+  --my-gray: #5a5a5a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Arial";
+}
+
+body {
+  background-color: var(--black);
+  height: 100%;
+  width: 100%;
+}
+
+.taskInput {
+  width: 85vw;
+  background-color: transparent;
+  font-size: 40px;
+  font-weight: 200;
+  padding-left: 30px;
+  border: none;
+  border-bottom-right-radius: 15px;
+  border-bottom: 1px solid var(--white);
+  color: var(--white);
+  outline: none;
+}
+
+.taskButton {
+  width: 12.7vw;
+  height: 7vh;
+  padding-bottom: 0;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-bottom-left-radius: 15px;
+  border-bottom: 1px solid var(--white);
+  color: var(--white);
+  transition: all 0.3s ease-in-out;
+}
+
+.taskButton:hover {
+  border-radius: 15px;
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.taskListHeader {
+  margin: 10px 0px 18px 30px;
+  color: var(--white);
+}
+
+.taskUl {
+  list-style: none;
+}
+
+.taskLi {
+  position: relative;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: var(--second-black);
+  padding: 1.5rem;
+}
+
+.taskLi:nth-child(odd) {
+  background-color: transparent;
+}
+
+.taskLi:hover {
+  background-color: var(--my-gray);
+}
+
+.taskLiA {
+  text-decoration: none;
+  color: var(--white);
+  padding-left: 1.2rem;
+}
+
+ul li.check-true {
+  background-color: #888;
+  color: black;
+  text-decoration: line-through;
+}
+
+ul li a.check-true::before {
+  content: "";
+  position: absolute;
+  border: var(--white) solid;
+  top: 30px;
+  left: 16px;
+  height: 15px;
+  width: 7px;
+  border-width: 0 2px 2px 0px;
+  transform: rotate(45deg);
+}
+
+ul li a.check-false::before {
+  content: "";
+  position: absolute;
+  border: var(--white) solid;
+  top: 30px;
+  left: 16px;
+  height: 13px;
+  width: 13px;
+  border-width: 2px;
+}
+
+.taskLiA span {
+  color: gray;
+  font-size: 15px;
+}
+
+.editButton,
+.deleteButton {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.3rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.editButton {
+  margin-right: 8px;
+}
+
+.editButton:hover {
+  color: var(--blue);
+}
+
+.deleteButton:hover {
+  color: var(--red);
+}
+
+.modalSection {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000090;
+  color: var(--white);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.modalCard {
+  width: 30rem;
+  position: relative;
+  background-color: var(--black);
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 18px 4px rgba(242, 239, 233, 0.6);
+  -moz-box-shadow: 0px 0px 18px 4px rgba(242, 239, 233, 0.6);
+  box-shadow: 0px 0px 18px 4px rgba(242, 239, 233, 0.6);
+}
+
+.modalTitle {
+  padding: 2rem;
+  padding-bottom: 1.5rem;
+  margin: 0;
+}
+
+.modalConfirmHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalX {
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.modalX:hover {
+  color: var(--red);
+}
+
+.modalCard hr {
+  margin-bottom: 1.5rem;
+}
+
+.modalP {
+  padding: 1rem;
+  text-align: center;
+  font-size: 21px;
+  line-height: 3rem;
+}
+
+.modalP span {
+  font-style: italic;
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.modalEditBtn {
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.3s ease-in-out;
+}
+
+.modalEditBtn:hover {
+  color: var(--blue);
+}
+
+.modalDeleteBtn {
+  text-decoration: none;
+  color: var(--white);
+  margin-left: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.modalDeleteBtn:hover {
+  color: var(--red);
+}
+
+.message {
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 200;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white);
+}
+
+.message-danger {
+  color: var(--red);
+}
+
+.message-success {
+  color: var(--green);
+}
+
+#close-message {
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding-left: 2rem;
+}
+
+#close-message:hover {
+  color: var(--red);
+}
